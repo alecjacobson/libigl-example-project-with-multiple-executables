@@ -1,7 +1,9 @@
 #include <igl/opengl/glfw/Viewer.h>
+#include "func.h"
 
 int main(int argc, char *argv[])
 {
+  func();
   // Inline mesh of a cube
   const Eigen::MatrixXd V= (Eigen::MatrixXd(8,3)<<
     0.0,0.0,0.0,

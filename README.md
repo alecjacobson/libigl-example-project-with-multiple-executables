@@ -1,39 +1,28 @@
-# libigl example project
+# libigl example project with multiple executables
 
-A blank project example showing how to use libigl and cmake. Feel free and
-encouraged to copy or fork this project as a way of starting a new personal
-project using libigl.
+This extension of the [libigl example
+project](https://github.com/libigl/libigl-example-project) demonstrates how to
+set up a CMake project using libigl that has multiple executables linked to the
+same project-specific "core" functionality (in this case the function `func`
+which prints `hello`).
 
-## See the tutorial first
-
-Then build, run and understand the [libigl
-tutorial](http://libigl.github.io/libigl/tutorial/).
-
-## Dependencies
-
-The only dependencies are stl, eigen, [libigl](http://libigl.github.io/libigl/) and
-the dependencies of the `igl::opengl::glfw::Viewer`.
-
-The cmake build system will attempt to find libigl according to environment variables (e.g., `LIBIGL`) and searching in common desitinations (e.g., `/usr/local/libigl/`). If you haven't installed libigl before, we recommend you to clone a copy of libigl right here:
-
-    cd libigl-example-project/
-    git clone https://github.com/libigl/libigl.git
-
-## Compile
-
-Compile this project using the standard cmake routine:
 
     mkdir build
-    cd build
-    cmake ..
+    cmake ../
+    make 
+
+will build libcore.* library (containing the compiled `func`) and `example1` and
+`example2` executables.
+
+Changing the implementation inside `func.cpp` and then reissuing
+
     make
 
-This should find and build the dependencies and create a `example_bin` binary.
+will recompile and link libcore.*, but only re-link `example1` and `example2`.
 
-## Run
+Changing the implementation inside `example1.cpp` and `example2.cpp` and then
+issuing:
 
-From within the `build` directory just issue:
+    make example2
 
-    ./example
-
-A glfw app should launch displaying a 3D cube.
+Will only recompile and relink `example2`.
